@@ -25,7 +25,7 @@ export default function Sidebar() {
             <div>
                 <div className="h-16 flex items-center px-6 border-b border-gray-100">
            <span className="text-xl font-bold text-gray-800 tracking-tight">
-             <span className="text-orange-600">I</span><span className="text-blue-600">I</span><span className="text-green-600">I</span><span className="text-red-600">T</span><span className="text-black">N</span><span className="text-black">R</span>
+             <span className="text-orange-600">C</span><span className="text-blue-600">H</span><span className="text-green-600">A</span><span className="text-red-600">C</span><span className="text-black">H</span><span className="text-black">A</span>
            </span>
                 </div>
 
