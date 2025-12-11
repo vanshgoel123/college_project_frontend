@@ -1,21 +1,21 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { GoogleLogin } from "@react-oauth/google"; // Google Button
-import { authAPI } from "../api/auth"; // API Connection
-import toast from "react-hot-toast"; // Notifications
-import { Mail, Lock, LogIn, ArrowRight } from "lucide-react";
+import { GoogleLogin } from "@react-oauth/google";
+import { authAPI } from "../api/auth";
+import { useAuth } from "../context/AuthContext"; // <--- 1. Import Auth Context
+import toast from "react-hot-toast";
+import { Mail, Lock, ArrowRight } from "lucide-react";
 
 export default function Login() {
     const navigate = useNavigate();
+    const { login } = useAuth(); // <--- 2. Get the login function from context
     const [loading, setLoading] = useState(false);
 
-    // Form State
     const [formData, setFormData] = useState({
         email: "",
         password: ""
     });
 
-    // --- HANDLERS ---
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
@@ -29,12 +29,11 @@ export default function Login() {
 
         setLoading(true);
         try {
-            // 1. Call Backend
             const response = await authAPI.login(formData);
 
-            // 2. Save User Data (Cookies are handled automatically by browser)
-            // response.data.data.user contains the user object from your controller
-            localStorage.setItem("user", JSON.stringify(response.data.data.user));
+            // FIX: Use the 'login' function from Context.
+            // This updates the App state AND sets localStorage for you.
+            login(response.data.data.user);
 
             toast.success("Welcome back!");
             navigate("/dashboard");
@@ -49,14 +48,11 @@ export default function Login() {
     const handleGoogleSuccess = async (credentialResponse) => {
         try {
             setLoading(true);
-            // 1. Send Token to Backend
             const response = await authAPI.googleLogin(credentialResponse.credential);
 
-            // 2. Save User Data
-            // Note: Google controller returns slightly different structure, check your API response
-            // Usually response.data.data is the user object in your googleAuthLogin controller
+            // FIX: Use context here too
             const userData = response.data.data.user || response.data.data;
-            localStorage.setItem("user", JSON.stringify(userData));
+            login(userData);
 
             toast.success("Signed in with Google!");
             navigate("/dashboard");
