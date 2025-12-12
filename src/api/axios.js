@@ -1,5 +1,5 @@
 import axios from "axios";
-const BASE_URL = "https://172.16.61.173/api/v1"
+const BASE_URL = "https://scholar.iiitnr.ac.in/api/v1"
 
 const api = axios.create({
   baseURL: BASE_URL,
