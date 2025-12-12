@@ -8,7 +8,7 @@ export const adminAPI = {
     getAllUsers: () => api.get("/admin/getAllUsers"),
 
 
-    getAnalyticsFromTo: (from, to) => api.post("/admin/fromTo", { from, to } ),
+    getAnalyticsFromTo: (from, to) => api.post("/admin/fromTo", { from, to }),
 
 
     getUserDetails: (userId) => api.get(`/admin/user/${userId}`),

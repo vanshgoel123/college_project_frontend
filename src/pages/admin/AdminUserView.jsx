@@ -17,7 +17,16 @@ export default function AdminUserView() {
     const fetchDetails = async () => {
         try {
             const response = await adminAPI.getUserDetails(userId);
-            setData(response.data.data);
+            // The controller returns separated paper arrays (journalPapers, conferencePapers, etc.)
+            // We merge them here to display a unified "Recent Publications" list
+            const resData = response.data.data;
+            const allPapers = [
+                ...(resData.journalPapers || []),
+                ...(resData.conferencePapers || []),
+                ...(resData.bookChapterPapers || [])
+            ].sort((a, b) => new Date(b.publishedDate) - new Date(a.publishedDate)); // Sort by date descending
+
+            setData({ ...resData, papers: allPapers });
         } catch (err) {
             console.error(err);
             toast.error("Failed to fetch user details");

@@ -23,6 +23,8 @@ export const userAPI = {
     setPassword: (data) => api.post("/users/setPassword", data),
 
 
+
+
     completeProfile: (formData) => api.post("/users/completeProfile", formData, {
         headers: { "Content-Type": "multipart/form-data" },
     }),
@@ -30,6 +32,10 @@ export const userAPI = {
 
     deleteAccount: () => api.delete("/users/delete"),
 
+    generateReport: (options) => api.post("/users/report", options, {
+        responseType: 'blob'
+    }),
 
-    generateReport: (params) => api.get("/users/report", { params }),
+
+
 };
