@@ -62,7 +62,7 @@ export default function AdminUserView() {
                 />
                 <DetailCard
                     label="Active Projects"
-                    value={data.projectCount}
+                    value={data.projectsCount}
                     icon={<Briefcase className="text-purple-600"/>}
                 />
                 <DetailCard

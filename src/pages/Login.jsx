@@ -64,13 +64,13 @@ export default function Login() {
         }
     };
 
-    // UI Helper Classes
+
     const inputClass = "w-full pl-10 pr-4 py-3 rounded-lg bg-gray-50 border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none transition-all text-gray-700 placeholder-gray-400";
     const iconClass = "absolute left-3 top-3.5 text-gray-400 h-5 w-5";
 
     return (
         <div className="min-h-screen flex items-center justify-center bg-gray-900 py-12 px-4 relative">
-            {/* Blurred Background */}
+
             <div className="absolute inset-0 z-0"
                  style={{
                      backgroundImage: "url('https://www.iiitnr.ac.in/sites/default/files/banner.jpg')",
@@ -81,13 +81,13 @@ export default function Login() {
             <div className="bg-white rounded-2xl shadow-2xl w-full max-w-md z-10 overflow-hidden relative">
                 <div className="p-8">
 
-                    {/* Header */}
+
                     <div className="text-center mb-8">
                         <h2 className="text-3xl font-bold text-gray-800">Welcome Back</h2>
                         <p className="text-sm text-gray-500 mt-2">Sign in to manage your research</p>
                     </div>
 
-                    {/* Google Login */}
+
                     <div className="mb-6 pb-6 border-b border-gray-100 flex flex-col items-center">
                         <GoogleLogin
                             onSuccess={handleGoogleSuccess}
@@ -97,7 +97,7 @@ export default function Login() {
                         <div className="w-full text-center mt-4 text-xs text-gray-400 font-medium">OR LOGIN WITH EMAIL</div>
                     </div>
 
-                    {/* Email Form */}
+
                     <form onSubmit={handleLogin} className="space-y-5 animate-fade-in">
                         <div className="relative">
                             <Mail className={iconClass} />
